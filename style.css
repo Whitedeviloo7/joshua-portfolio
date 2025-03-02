@@ -1,39 +1,100 @@
+/* General Styles */
 body {
     font-family: Arial, sans-serif;
-    text-align: center;
-    background: #111;
-    color: white;
     margin: 0;
     padding: 0;
-    animation: fadeIn 2s;
+    text-align: center;
+    background: white;
+    color: black;
+    transition: background 0.3s, color 0.3s;
 }
 
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-}
-
-header {
-    padding: 20px;
-    background: linear-gradient(45deg, #ff416c, #ff4b2b);
+/* Dark Mode */
+.dark-mode {
+    background: #121212;
     color: white;
-    font-size: 24px;
-    animation: slideDown 1s ease-in-out;
 }
 
-@keyframes slideDown {
-    from { transform: translateY(-100px); opacity: 0; }
-    to { transform: translateY(0); opacity: 1; }
+/* Navbar */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    background: black;
+    color: white;
 }
 
-section {
-    padding: 20px;
-    margin: 20px;
-    border-radius: 10px;
-    background: rgba(255, 255, 255, 0.1);
+.navbar ul {
+    list-style: none;
+    display: flex;
+    padding: 0;
+    margin: 0;
 }
 
-footer {
-    background: #222;
-    padding: 10px;
+.navbar li {
+    margin: 0 15px;
+}
+
+.navbar a {
+    color: white;
+    text-decoration: none;
+}
+
+#darkModeToggle {
+    background: none;
+    color: white;
+    border: 1px solid white;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+/* Sections */
+.hero, .about, .skills, .projects, .certifications, .contact {
+    padding: 50px;
+    animation: fadeInUp 1s ease-out;
+}
+
+/* Profile Picture */
+.profile-pic {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    margin: 20px auto;
+    display: block;
+}
+
+/* Links */
+a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Animations */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+    }
+    .navbar ul {
+        flex-direction: column;
+    }
+    .navbar li {
+        margin: 5px 0;
+    }
 }
