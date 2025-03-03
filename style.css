@@ -1,11 +1,13 @@
+@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
+
 /* General Styles */
 body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
     text-align: center;
-    background: white;
-    color: black;
+    background: black;
+    color: white;
     transition: background 0.3s, color 0.3s;
 }
 
@@ -18,18 +20,19 @@ body {
 /* Navbar */
 .navbar {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 15px 20px;
+    justify-content: center;
+    padding: 15px;
     background: black;
-    color: white;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 100;
 }
 
 .navbar ul {
     list-style: none;
     display: flex;
     padding: 0;
-    margin: 0;
 }
 
 .navbar li {
@@ -49,40 +52,108 @@ body {
     cursor: pointer;
 }
 
-/* Sections */
-.hero, .about, .skills, .projects, .certifications, .contact {
-    padding: 50px;
-    animation: fadeInUp 1s ease-out;
+/* Hero Section */
+.hero {
+    margin-top: 80px;
 }
 
-/* Profile Picture */
 .profile-pic {
     width: 120px;
     height: 120px;
     border-radius: 50%;
-    margin: 20px auto;
-    display: block;
 }
 
-
-a {
-    color: #007bff;
-    text-decoration: none;
+h1 {
+    color: green;
+    font-family: 'Share Tech Mono', 'Cascadia Code', Menlo, Monaco, 'Courier New', monospace;
+    font-size: 4rem;
+    filter: drop-shadow(0px 0px 5px currentColor);
 }
 
-a:hover {
-    text-decoration: underline;
+/* Typing Effect */
+.typing-effect::after {
+    content: '';
+    display: inline-block;
+    width: .2em;
+    height: .7em;
+    background-color: currentColor;
+    margin-left: .1em;
+    animation: blink 1s linear infinite;
+    vertical-align: baseline;
+}
+
+/* Grid Animation */
+.grid-container {
+    --grid: 10rem;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform-style: preserve-3d;
+    perspective: 100rem;
+    animation: rotate 100s linear infinite;
+}
+
+.plane {
+    --dir: 1;
+    width: 300%;
+    height: 150%;
+    min-height: 70rem;
+    position: absolute;
+    bottom: 0;
+    transform-style: preserve-3d;
+    transform-origin: bottom center;
+    transform: translateX(-50%) rotateX(85deg);
+}
+
+.plane:last-child {
+    --dir: -1;
+    top: 0;
+    transform-origin: top center;
+    transform: translateX(-50%) rotateX(-85deg);
+}
+
+.grid, .glow {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+}
+
+.grid::before {
+    background-image: repeating-linear-gradient(to left, green, green 4px, transparent 4px, transparent var(--grid)),
+                      repeating-linear-gradient(to bottom, green, green 4px, transparent 4px, transparent var(--grid));
+    animation: move 1s linear infinite;
+}
+
+.grid::after {
+    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 255) var(--grid), rgba(0, 0, 0, 0));
+    z-index: 1;
+    transform: translateZ(1px);
+}
+
+.glow {
+    filter: blur(1rem);
+    z-index: 1;
+    mix-blend-mode: plus-lighter;
 }
 
 /* Animations */
-@keyframes fadeInUp {
+@keyframes move {
     from {
-        opacity: 0;
-        transform: translateY(20px);
+        transform: translateY(0px);
     }
     to {
-        opacity: 1;
-        transform: translateY(0);
+        transform: translateY(calc(var(--grid) * var(--dir)));
+    }
+}
+
+@keyframes blink {
+    0%, 50% {
+        visibility: visible;
+    }
+    51%, 100% {
+        visibility: hidden;
     }
 }
 
